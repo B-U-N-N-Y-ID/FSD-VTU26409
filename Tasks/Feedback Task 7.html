@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Feedback Form</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Form box */
+.form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Inputs */
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+/* Hover highlight */
+input:hover, textarea:hover {
+    border-color: #6928ec;
+    background-color: #f0ebff;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #6928ec;
+    color: white;
+    border: none;
+}
+
+/* Error */
+.error {
+    color: red;
+    font-size: 14px;
+}
+</style>
+
+<script>
+
+// 🔹 Reusable validation function
+function validateField(value, fieldName) {
+    if (value.trim() === "") {
+        return fieldName + " is required!";
+    }
+    return "";
+}
+
+// 🔹 Keypress validation
+function checkInput(event, fieldName) {
+    let value = event.target.value;
+    let error = validateField(value, fieldName);
+    document.getElementById("error").innerText = error;
+}
+
+// 🔹 Double-click submit confirmation
+function confirmSubmit() {
+    alert("✅ Feedback Submitted Successfully!");
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Feedback Form</h2>
+
+<form>
+
+    <input type="text" placeholder="Enter Name"
+        onkeyup="checkInput(event, 'Name')">
+
+    <input type="email" placeholder="Enter Email"
+        onkeyup="checkInput(event, 'Email')">
+
+    <textarea placeholder="Enter Feedback"
+        onkeyup="checkInput(event, 'Feedback')"></textarea>
+
+    <div id="error" class="error"></div>
+
+    <!-- Double click event -->
+    <button type="button" ondblclick="confirmSubmit()">
+        Submit (Double Click)
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>
